@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Smash Faces</title>	
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+			<center>
+				<h1>Smash Faces</h1>
+				<p>Bienvenidas al juego de Smash Faces. Tu misión es poder identificar a todas tus compañeras de clase, ingresando su nombre.
+				</p>
+					<br>
+				<p>Por cada acierto, ganarás 5 puntos. Por cada error, perderás 1 punto. 
+					<br>
+				Después de 5 intentos fallidos, pasarás a intentar identificar a la siguiente. 
+				</p>
+			</center>			
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5" id="eligeSede">
+					<select name="Sede" id="Sede">
+						<option value="">Elige tu sede</option>
+						<option value="Pe">Lima</option>
+						<option value="Mx">México</option>
+						<option value="Cl">Santiago</option>
+					</select>
+				</div>
+
+				<div class="col-md-7" id="divMarcador">	
+					<span id="spanScore"> </span>
+				</div>
+
+			</div>
+			
+			<div class="row" id="contenedorJuego">
+				<div class="col-md-5">
+					<center>
+						<div class="FotoPerfil">
+							<img class="Foto" id="imagenPersona" src="" alt="">
+						</div>
+					</center>
+					<div class="cajaInput well well-lg">
+						
+						<input type="text" id="inputNombre" placeholder="Pon el nombre aquí"class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+						<button type="button" id="btnClick">Iniciar</button> 
+						<!--EN CASO DE ACERTAR, DESPLEGAR MENSAJE: "ACERTASTE!"-->
+						<center>
+							<p class="demo">
+							<!--"The p element is being dragged" 
+							OR
+							"The p element was dropped"--> </p>
+						</center>
+					</div>
+				</div>
+
+				<div class="col-md-7">
+					<div class="well well-lg droptarget" dropzone="copy" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+						<p ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="Anita">Arrastra el nombre de la coder</p>
+						<p id="demo"></p>
+
+						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id=""></p>
+						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id=""></p>
+						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id=""></p>
+						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id=""></p>
+						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id=""></p>
+						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id=""></p>
+						
+												
+					</div>
+				</div>
+
+			</div>
+		</div> <!--CIERRA CONTAINER-->
+
+
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+   		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>

@@ -1,0 +1,21 @@
+*{
+	margin-top: 10px; 
+	margin-bottom: 10px;
+}
+body{
+	background-color: #FCEECA !important;
+}
+.well {
+	background-color: #FD7D3E !important;
+}
+
+.Foto{
+	width: 288px;
+	height: 192px;
+	border-radius: 300px;
+	background-color: #FFDD88;
+	padding: 0px;
+	margin: 0px;
+	border: dotted #FD7D3E;
+}
+}
