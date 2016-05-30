@@ -8,6 +8,11 @@
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	</head>
 
+	<style>
+.droptarget {
+}
+	</style>
+	
 	<body>
 
 		<div class="container-fluid">
@@ -47,45 +52,37 @@
 							<img class="Foto" id="imagenPersona" src="" alt="">
 						</div>
 					</center>
-					<div class="cajaInput well well-lg">
+	<!-- 				<div class="cajaInput well well-lg">
 						
 						<input type="text" id="inputNombre" placeholder="Pon el nombre aquí"class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
 
 						<button type="button" id="btnClick">Iniciar</button> 
 						<!--EN CASO DE ACERTAR, DESPLEGAR MENSAJE: "ACERTASTE!"-->
-						<center>
+	<!--					<center>
 							<p class="demo">
 							<!--"The p element is being dragged" 
 							OR
-							"The p element was dropped"--> </p>
-						</center>
+							"The p element was dropped"--> <!--</p>
+						</center>-->
 					</div>
 				</div>
 
+				<div id="NamesArea" class="well well-lg" style="column-count: 13;">										
+				</div>
 				<div class="col-md-7">
-					<div class="well well-lg droptarget" dropzone="copy" ondrop="drop(event)" ondragover="allowDrop(event)">
-
-						<p ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="Anita">Arrastra el nombre de la coder</p>
-						<p id="demo"></p>
-
-						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id=""></p>
-						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id=""></p>
-						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id=""></p>
-						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id=""></p>
-						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id=""></p>
-						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id=""></p>
-						
-												
+					<div class="well well-lg droptarget" dropzone="copy" ondrop="drop(event)" ondragover="allowDrop(event)"> 
+						<p ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="Instruccion">Arrastra el nombre de la coder</p>
+						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id=""></p>						
 					</div>
 				</div>
-
-			</div>
+				<div class="col-md-7">
+						<p id="demo"></p>
+				</div>
 		</div> <!--CIERRA CONTAINER-->
 
 
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-
    		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script src="js/main.js"></script>
 	</body>

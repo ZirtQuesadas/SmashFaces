@@ -1,3 +1,12 @@
+$( document ).ready(function() {
+    console.log( "ready!" );
+	for (i = 0; i < nombres.length; i++) {
+		var parrafoNombre = "<p id=\"Nombre\""+i.toString()+"  ondragstart=\"dragStart(event)\" ondrag=\"dragging(event)\" draggable=\"true\">"+nombres[i]+"</p>"
+		$('#NamesArea').append(parrafoNombre);
+	}
+	
+});
+
 /*Esta aplicación web medirá la relación que hacen sus usuarixs entre nombre y fotografía.
 Puede usarse con fines didácticos (exámenes, lecciones, etc) o de sondeo */
 
@@ -53,12 +62,14 @@ var imagenes = [
  "Dj Ruth", "Ruth", 
  "Sandia", "San", 
  "Vian", "Zaz"];
-var nombreCoder = "",
-var puntos = 0,
-var intentos = 0,
-var nombreCorrecto = 0,
-var numeroAlAzar = 0,
+
+var nombreCoder = "";
+var puntos = 0;
+var intentos = 0;
+var nombreCorrecto = 0;
+var numeroAlAzar = 0;
 var idCoder = "";
+
 function deplegarPuntos(){ // Le va a cambiar el texto a #spanScore
   $('#spanScore').text(puntos);
 };
@@ -78,6 +89,7 @@ function imagenAleatoria() {
 //Ésto hace que numeroAlAzar sea un número entero al azar entre 0 y el número de elementos de tamanoArregloNombres
 //FUNCIÓN PARA TOMAR UNA IMAGEN CON INDEX RANDOM
   var imagen = 'fotos/' + imagenes[numeroAlAzar];
+  var nombre = nombres[numeroAlAzar];
 //se crea la var imagen, con datos para el atributo src
 //'fotos/' da la dirección de la carpeta donde están todos los archivos de fotos 
 //y donde imagenes[numeroAlAzar] da un index del arreglo imagenes, o sea, elige una foto 
@@ -123,6 +135,7 @@ function dragStart(event) { // Evento que se detona cuando se arrastra
 }
 function dragging(event) {
     document.getElementById("demo").innerHTML = "The p element is being dragged";
+	$( "#Instruccion" ).remove();
 }
 function allowDrop(event) {
     event.preventDefault();
