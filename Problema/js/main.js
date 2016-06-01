@@ -1,27 +1,3 @@
-$( document ).ready(function() {
-    console.log( "ready!" );
-	for (i = 0; i < nombres.length; i++) {
-		var parrafoNombre = "<p id=\"Nombre\""+i.toString()+"  ondragstart=\"dragStart(event)\" ondrag=\"dragging(event)\" draggable=\"true\">"+nombres[i]+"</p>"
-		$('#NamesArea').append(parrafoNombre);
-	}
-	
-});
-
-/*Esta aplicación web medirá la relación que hacen sus usuarixs entre nombre y fotografía.
-Puede usarse con fines didácticos (exámenes, lecciones, etc) o de sondeo */
-
-// 1. Una condición para llamar a la función para iniciar el juego
-//El juego debe cargar sólo cuando (evento) se elija como sede Ciudad de México
-$('#Sede').change(function(){
-  var sede = $(this).val(); //Ésto toma el valor del elemento y lo asigna a var sede
-  if (sede=="Mx") { //Validación del match de la sede con las fotos
-    imagenAleatoria();// Esto llama a la función imagenAleatoria que se declara más abajo
-    crearCajasConNombres(); 
-  }else{
-    alert("Éste juego sólo funcionará para la sede Ciudad de México")  
-  }
-});
-
 //Éstos son los arreglos que contienen las imágenes y los nombres de las coders. C/u tiene 36 items
 var imagenes = [
  "Ana.jpg", "Analy.jpg", 
@@ -70,8 +46,31 @@ var nombreCorrecto = 0;
 var numeroAlAzar = 0;
 var idCoder = "";
 
+$( document ).ready(function() {
+    console.log( "ready!" );
+	for (var i = 0; i < nombres.length; i++) {
+    var elementId = 'nombre_' + i;
+		var parrafoNombre = '<p id="' + elementId + '"  ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true">'+nombres[i]+'</p>';
+		$('#NamesArea').append(parrafoNombre);
+	}
+});
+
+/*Medirá la relación que hacen sus usuarixs entre nombre y fotografía.Puede usarse con fines didácticos (exámenes, lecciones, etc) o de sondeo */
+// 1. CONDICIÓN INICIAL. El juego debe cargar sólo cuando (evento) se elija como sede Ciudad de México
+$('#Sede').change(function(){
+  var sede = $(this).val(); //Ésto toma el valor del elemento y lo asigna a var sede
+  if (sede=="Mx") { //Validación del match de la sede con las fotos
+    imagenAleatoria();// Esto llama a la función imagenAleatoria que se declara más abajo
+  }else{
+    alert("Éste juego sólo funcionará para la sede Ciudad de México")  
+  }
+});
+
 function deplegarPuntos(){ // Le va a cambiar el texto a #spanScore
   $('#spanScore').text(puntos);
+};
+function contarIntentos(){
+
 };
 
 //FUNCIÓN PARA CARGAR FOTO AL AZAR //enteroRandomEnRango se necesita para la función imagenAleatoria
@@ -105,57 +104,44 @@ function imagenAleatoria() {
 };
 
 
-//#red FUNCIÓN PARA CREAR NOMBRES ARRASTRABLES
-//tomar array y *for each* 
-//escribir en <p> el valor de texto de su index respectivo del arreglo nombres
-//ponerle una clase -la misma- a cada <p> (para estilizar y hacerlo draggable=true) 
-//ponerle un value diferente a cada <p> (para manipular eventos)
-function crearCajasConNombres() {
-  nombres.forEach(function(element){
-    nombreCoder = element;
-    idCoder = nombreCoder;
-    console.log=nombreCoder;
-    //var htmlItem = $('<p id="'+idCoder + '"></p>');
-    //$('div').append(htmlItem);    
-  });
-
- // nombre.createElement$("div")// crear div dar atributo #nombre
- // INICIAR CON btnClick-->EVENTO
-
-  /* TIENE QUE CREARSE ALGO ASÍ
-  <p ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true"
-  id="dragtarget">Nombre</p>
-  <p class="demo"></p>
-  */
-};
-
 // FUNCIONES DRAG!!!!!!!!
 function dragStart(event) { // Evento que se detona cuando se arrastra
     event.dataTransfer.setData("Text", event.target.id);
-}
+};
+
 function dragging(event) {
     document.getElementById("demo").innerHTML = "The p element is being dragged";
 	$( "#Instruccion" ).remove();
-}
+};
+
 function allowDrop(event) {
     event.preventDefault();
-}
+};
+
 function drop(event) {
+    console.log('Drop');
     event.preventDefault();
     var data = event.dataTransfer.getData("Text");
-    event.target.appendChild(document.getElementById(data));
+    console.log(data);
+
+    var elemento = document.getElementById(data);
+    event.target.appendChild(elemento);
     document.getElementById("demo").innerHTML = "The p element was dropped";
-    hacerMatch();// MANDA LLAMAR LA FUNCIÓN hacerMatch
-}
+    hacerMatch(elemento);// MANDA LLAMAR LA FUNCIÓN hacerMatch
+};
 
 //LA FUNCION hacerMatch, LLAMADA POR drop(event), SE DEFINE ASÍ:
-function hacerMatch(){
+function hacerMatch(elemento){
+
+
   //A CONTINUACIÓN, EL EVENTO QUE DETONARÁ LA FUNCIÓN PARA COMPARAR LOS DATOS
-    var nombre = $('#inputNombre').val(); 
+    var nombre = elemento.innerHTML;
     // Declara var nombre, que toma el valor del elemento con el id #inputNombre
     var nombreCorrecto = nombres[numeroAlAzar];// #red CUIDADO CON EL SCOPE!!!!!!!!!!
+
+    console.log('Validar :' + nombre + ' con el correcto: ' + nombreCorrecto);
     //SI ACIERTA, ENTONCES ELIMINA EL NOMBRE YA ACERTADO
-    if (nombre===nombreAAdivinar) {// SI ACIERTA, EL NOMBRE Y LA FOTO SE QUITAN DE SUS RESPECTIVOS ARREGLOS
+    if (nombre===nombreCorrecto) {// SI ACIERTA, EL NOMBRE Y LA FOTO SE QUITAN DE SUS RESPECTIVOS ARREGLOS
       puntos = puntos + 5; //suma 5 al contador de puntos
       alert("¡Acertaste!")
       nombres.splice(numeroAlAzar, 1);
@@ -171,11 +157,7 @@ function hacerMatch(){
     
  // });
 }; //CIERRA FUNCIÓN hacerMatch
-  
 
-$(document).ready(function() {
-  imagenAleatoria();
-});   //CIERRA FUNCIÓN DOCUMENT READY
 
 
 
@@ -183,16 +165,6 @@ $(document).ready(function() {
 //$('#btnRevisar').click(function(){
   //hará ésto cuando reciba click
   //}
-
-/* ESTE CÓDIGO NO SIRVE, PERO NO LO BORRO PORQUE #YOLO #YODELFUTUROTELOESTOYGUARDANDO
-//Generamos el número al azar
-//var indice = enteroRandomEnRango(0, 45);
-//Imprimimos el nombre y la imagen
-//console.log(arregloNombres[indice]);
-//console.log(arregloNombres[indice] + '.jpg');
-//ver el tamaño del arreglo imagenes: var tamanoArregloImagenes = imagenes.length;
-
-*/
 
 /* SPECS
 Apariencia: El programa está dividido en cabecera y en el juego.

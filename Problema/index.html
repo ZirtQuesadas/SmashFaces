@@ -30,7 +30,7 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-md-5" id="eligeSede">
+				<div class="col-md-5"">
 					<select name="Sede" id="Sede">
 						<option value="">Elige tu sede</option>
 						<option value="Pe">Lima</option>
@@ -46,7 +46,7 @@
 			</div>
 			
 			<div class="row" id="contenedorJuego">
-				<div class="col-md-5">
+				<div class="col-md-5"><!-- FotoPerfil-->
 					<center>
 						<div class="FotoPerfil">
 							<img class="Foto" id="imagenPersona" src="" alt="">
@@ -67,12 +67,14 @@
 					</div>
 				</div>
 
-				<div id="NamesArea" class="well well-lg" style="column-count: 13;">										
+				<div id="NamesArea" class="well well-lg" style="column-count: 13;">	<!--ACÁ LLEGAN LOS NOMBRES CREADOS-->							
 				</div>
+
 				<div class="col-md-7">
 					<div class="well well-lg droptarget" dropzone="copy" ondrop="drop(event)" ondragover="allowDrop(event)"> 
 						<p ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="Instruccion">Arrastra el nombre de la coder</p>
-						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id=""></p>						
+						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id="">
+						</p>
 					</div>
 				</div>
 				<div class="col-md-7">
@@ -80,8 +82,6 @@
 				</div>
 		</div> <!--CIERRA CONTAINER-->
 
-
-		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
    		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script src="js/main.js"></script>
