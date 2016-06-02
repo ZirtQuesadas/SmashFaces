@@ -47,25 +47,29 @@ var idCoder = "";
 
 $( document ).ready(function() {
     console.log( "ready!" );
-	for (var i = 0; i < nombres.length; i++) {
+  /*Medirá la relación que hacen sus usuarixs entre nombre y fotografía.Puede usarse con fines didácticos (exámenes, lecciones, etc) o de sondeo */
+  // 1. CONDICIÓN INICIAL. El juego debe cargar sólo cuando (evento) se elija como sede Ciudad de México
+  $('#Sede').change(function(){
+    var sede = $(this).val(); //Ésto toma el valor del elemento y lo asigna a var sede
+    if (sede=="Mx") { //Validación del match de la sede con las fotos
+      imagenAleatoria();// Esto llama a la función imagenAleatoria que se declara más abajo
+      creaNombres();
+      deplegarPuntos();
+    }else{
+      alert("Éste juego sólo funcionará para la sede Ciudad de México")  
+    }
+  });
+
+}); // cierra (document).ready
+
+//FUNCIÓN PARA CREAR CAJAS DE NOMBRES
+function creaNombres() {
+  for (var i = 0; i < nombres.length; i++) {
     var elementId = 'nombre_' + i;
-		var parrafoNombre = '<p id="' + elementId + '"  ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true">'+nombres[i]+'</p>';
-		$('#NamesArea').append(parrafoNombre);
-	}
-});
-
-/*Medirá la relación que hacen sus usuarixs entre nombre y fotografía.Puede usarse con fines didácticos (exámenes, lecciones, etc) o de sondeo */
-// 1. CONDICIÓN INICIAL. El juego debe cargar sólo cuando (evento) se elija como sede Ciudad de México
-$('#Sede').change(function(){
-  var sede = $(this).val(); //Ésto toma el valor del elemento y lo asigna a var sede
-  if (sede=="Mx") { //Validación del match de la sede con las fotos
-    imagenAleatoria();// Esto llama a la función imagenAleatoria que se declara más abajo
-    deplegarPuntos();
-  }else{
-    alert("Éste juego sólo funcionará para la sede Ciudad de México")  
+    var parrafoNombre = '<p id="' + elementId + '" class="cajaCoder" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true">'+nombres[i]+'</p>';
+    $('#NamesArea').append(parrafoNombre);
   }
-});
-
+}
 //FUNCIÓN PARA CARGAR FOTO AL AZAR //enteroRandomEnRango se necesita para la función imagenAleatoria
 function enteroRandomEnRango(min, max) {
   var numero = Math.random() * (max - min) + min;
@@ -86,10 +90,10 @@ function imagenAleatoria() {
 //'fotos/' da la dirección de la carpeta donde están todos los archivos de fotos 
 //y donde imagenes[numeroAlAzar] da un index del arreglo imagenes, o sea, elige una foto 
   // y '.jpg' da la extensión del archivo
-    $('#imagenPersona').attr("src", imagen);
-// Al elemento con el id imagenPersona le pone atributo src
+    $('#imagenPersona').attr("src", imagen); // ; ??
+// Al elemento con el id imagenPersona le pone atributo src con valor de var imagen
     $('#imagenPersona').attr("alt", nombre)
-// Al elemento con el id imagenPersona le pone atributo alt
+// Al elemento con el id imagenPersona le pone atributo alt con valor de var nombre
     //Cambiar un atributo de forma dinámica
   }else{
     alert("Fin del juego");//No hay más fotos que mostrar
@@ -117,10 +121,10 @@ function drop(event) {
     hacerMatch(elemento);// MANDA LLAMAR LA FUNCIÓN hacerMatch
 };
 
+//LA FUNCIÓN PARA COMPARAR LOS DATOS
 //LA FUNCION hacerMatch, LLAMADA POR drop(event), SE DEFINE ASÍ:
 function hacerMatch(elemento){
-    var intentos = 1;
-  //EL EVENTO QUE DETONARÁ LA FUNCIÓN PARA COMPARAR LOS DATOS
+    var intentos = 0;
     var nombre = elemento.innerHTML;
     // Declara var nombre, que toma el valor del elemento con el id #inputNombre
     var nombreCorrecto = nombres[numeroAlAzar];
@@ -134,58 +138,32 @@ function hacerMatch(elemento){
             //algo.splice(cortarDesdeIndex, cuantosElementos);
             imagenAleatoria(); //PARA REPETIR EL PROCESO
           }else{ 
-            do{
-              $(elemento).remove();
-              alert(puntos)
+              $(elemento).remove(); // ¿¿¿¿lo quita de la caja donde lo dropeó ????
+              $('#NamesArea').append(elemento);// vuelve a poner el nombre con los demás
               puntos--;
-              nombre = elemento.innerHTML;
-              nombreCorrecto = nombres[numeroAlAzar];
-              if (nombre===nombreCorrecto) {// SI ACIERTA, EL NOMBRE Y LA FOTO SE QUITAN DE SUS RESPECTIVOS ARREGLOS
-                    alert("¡Acertaste!")
-                    puntos = puntos + 5; //suma 5 al contador de puntos
-                    nombres.splice(numeroAlAzar, 1);
-                    imagenes.splice(numeroAlAzar, 1); 
-                    //algo.splice(cortarDesdeIndex, cuantosElementos);
-                    imagenAleatoria(); //PARA REPETIR EL PROCESO
-                  }else{ 
-                    alert("es tu intento numero: " + intentos); 
-                    $('#NamesArea').append(elemento);// vuelve a poner el nombre
-                    intentos = intentos + 1;
-                    alert(intentos +"puntos " + puntos)
-                        }
-            }while(intentos <= 5)
+              intentos++;
+              alert("es tu intento numero: " + intentos);
+              return intentos
+              contarErrores();
           }
-    /*
-          for (var intentos = 1; intentos <= 5; intentos++) {   
-            alert("Fallaste! y llevas intentos" + intentos); 
-            $('#NamesArea').append(elemento);// vuelve a poner el nombre
-            puntos = puntos - 1;
-            hacerMatch();
-            nombre = elemento.innerHTML;
-            // Declara var nombre, que toma el valor del elemento con el id #inputNombre
-            nombreCorrecto = nombres[numeroAlAzar];
-            
-            console.log('Validar :' + nombre + ' con el correcto: ' + nombreCorrecto);
-            //SI ACIERTA, ENTONCES ELIMINA EL NOMBRE YA ACERTADO
-            if (nombre===nombreCorrecto) {// SI ACIERTA, EL NOMBRE Y LA FOTO SE QUITAN DE SUS RESPECTIVOS ARREGLOS
-              alert("¡Acertaste!")
-              puntos = puntos + 5; //suma 5 al contador de puntos
-              nombres.splice(numeroAlAzar, 1);
-              imagenes.splice(numeroAlAzar, 1); 
-              //algo.splice(cortarDesdeIndex, cuantosElementos);
-              imagenAleatoria(); //PARA REPETIR EL PROCESO
-            }else{ 
-              alert("es tu intento numero" + intentos); 
-              intentos ++;
-            }
-          }// CIERRA FOR 
-          alert("Ya no tienes mas intentos"); 
-          imagenAleatoria(); //PARA REPETIR EL PROCESO
-        }*/
+}; //CIERRA FUNCIÓN hacerMatch  
 
-}; //CIERRA FUNCIÓN hacerMatch
+function contarErrores() {
+      var errores = intentos;
+        if (errores <= 5) {
+          alert("Tenes otra oportunidad")
+          hacerMatch(nuevoElemento);
+        }
+        else {
+          alert("Has agotado tus intentos")
+          imagenAleatoria(); //PARA REPETIR EL PROCESO
+        } 
+}; //CIERRA FUNCIÓN contarErrores();              
+
+  
+// NO ESTÁ RECONOCIENDO LA FUNCIÓN innerHTML(puntos)
 function deplegarPuntos(){ // Para cambiar el texto a #spanScore
-  $('#spanScore').innerHTML(puntos);
+  $('#spanScore').innerHTML(puntos); //NO ESTÁ ESCRIBIENDO EN EL HTML
 };
 
   
