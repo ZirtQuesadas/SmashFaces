@@ -39,6 +39,7 @@ var imagenes = [
  "Sandia", "San", 
  "Vian", "Zaz"];
 
+var intentos = 1;
 var nombreCoder = "";
 var puntos = 0;
 var nombreCorrecto = 0;
@@ -124,7 +125,7 @@ function drop(event) {
 //LA FUNCIÓN PARA COMPARAR LOS DATOS
 //LA FUNCION hacerMatch, LLAMADA POR drop(event), SE DEFINE ASÍ:
 function hacerMatch(elemento){
-    var intentos = 0;
+    
     var nombre = elemento.innerHTML;
     // Declara var nombre, que toma el valor del elemento con el id #inputNombre
     var nombreCorrecto = nombres[numeroAlAzar];
@@ -132,27 +133,27 @@ function hacerMatch(elemento){
     //SI ACIERTA, ENTONCES ELIMINA EL NOMBRE YA ACERTADO
           if (nombre===nombreCorrecto) {// SI ACIERTA, EL NOMBRE Y LA FOTO SE QUITAN DE SUS RESPECTIVOS ARREGLOS
             alert("¡Acertaste!")
+            intentos = 1;
             puntos = puntos + 5; //suma 5 al contador de puntos
             nombres.splice(numeroAlAzar, 1);
             imagenes.splice(numeroAlAzar, 1); 
             //algo.splice(cortarDesdeIndex, cuantosElementos);
+            $(elemento).remove(); // ¿¿¿¿lo quita de la caja donde lo dropeó ????
             imagenAleatoria(); //PARA REPETIR EL PROCESO
           }else{ 
               $(elemento).remove(); // ¿¿¿¿lo quita de la caja donde lo dropeó ????
               $('#NamesArea').append(elemento);// vuelve a poner el nombre con los demás
+              alert("es tu intento numero: " + intentos); 
               puntos--;
               intentos++;
-              alert("es tu intento numero: " + intentos);
-              return intentos
-              contarErrores();
+              contarErrores(intentos);
           }
 }; //CIERRA FUNCIÓN hacerMatch  
 
-function contarErrores() {
+function contarErrores(intentos) {
       var errores = intentos;
         if (errores <= 5) {
           alert("Tenes otra oportunidad")
-          hacerMatch(nuevoElemento);
         }
         else {
           alert("Has agotado tus intentos")
