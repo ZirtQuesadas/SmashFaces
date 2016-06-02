@@ -8,11 +8,7 @@
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	</head>
 
-	<style>
-.droptarget {
-}
-	</style>
-	
+
 	<body>
 
 		<div class="container-fluid">
@@ -30,7 +26,7 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-md-5"">
+				<div class="col-md-4">
 					<select name="Sede" id="Sede">
 						<option value="">Elige tu sede</option>
 						<option value="Pe">Lima</option>
@@ -39,8 +35,13 @@
 					</select>
 				</div>
 
-				<div class="col-md-7" id="divMarcador">	
-					<span id="spanScore"> </span>
+				<div class="col-md-4" id="divMarcador">	
+					<span>Puntos: </span>
+					<span id="spanScore"></span>
+				</div>
+				<div class="col-md-4" id="divMarcador">	
+					<span>Intentos: </span>
+					<span id="intentos"></span>
 				</div>
 
 			</div>
@@ -51,34 +52,18 @@
 						<div class="FotoPerfil">
 							<img class="Foto" id="imagenPersona" src="" alt="">
 						</div>
+						<div class="well well-lg droptarget" ondrop="drop(event)" ondragover="allowDrop(event)"> 
+							
+							<p ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="Instruccion">Arrastra el nombre de la coder</p>
+							<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="">
+							</p>
+						</div>
 					</center>
-	<!-- 				<div class="cajaInput well well-lg">
-						
-						<input type="text" id="inputNombre" placeholder="Pon el nombre aquí"class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
-
-						<button type="button" id="btnClick">Iniciar</button> 
-						<!--EN CASO DE ACERTAR, DESPLEGAR MENSAJE: "ACERTASTE!"-->
-	<!--					<center>
-							<p class="demo">
-							<!--"The p element is being dragged" 
-							OR
-							"The p element was dropped"--> <!--</p>
-						</center>-->
-					</div>
-				</div>
-
-				<div id="NamesArea" class="well well-lg" style="column-count: 13;">	<!--ACÁ LLEGAN LOS NOMBRES CREADOS-->							
-				</div>
-
-				<div class="col-md-7">
-					<div class="well well-lg droptarget" dropzone="copy" ondrop="drop(event)" ondragover="allowDrop(event)"> 
-						<p ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="Instruccion">Arrastra el nombre de la coder</p>
-						<p class="cajaCoder"ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" dropzone="copy" id="">
-						</p>
-					</div>
 				</div>
 				<div class="col-md-7">
-						<p id="demo"></p>
+					<div id="NamesArea" class="well well-lg" style="column-count: 7;">
+						<!--ACÁ LLEGAN LOS NOMBRES CREADOS-->	
+					</div>
 				</div>
 		</div> <!--CIERRA CONTAINER-->
 
