@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Smash Faces</title>	
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	</head>
+
+
+	<body>
+		<header>
+			<center>
+				<h1>Smash Faces</h1>
+			</center>
+		</header>
+		<div class="container">
+			<center>
+				
+				<h3>Bienvenidas al juego de Smash Faces. Tu misión es poder identificar a todas tus compañeras de clase, ingresando su nombre.
+				</h3>
+
+				<h4>Por cada acierto, ganarás 5 puntos. Por cada error, perderás 1 punto. 
+				</h4>
+				<h4>Después de 5 intentos fallidos, pasarás a intentar identificar a la siguiente. 
+				</h4>
+			</center>			
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5">
+					<select name="Sede" id="Sede">
+						<option value="">Elige tu sede</option>
+						<option value="Pe">Lima</option>
+						<option value="Mx">México</option>
+						<option value="Cl">Santiago</option>
+					</select>
+				</div>
+
+				<div class="col-md-3" id="divMarcador">	
+					<span>Puntos: </span>
+					<span id="spanScore"></span>
+				</div>
+				<div class="col-md-4" id="divMarcador">	
+					<span>Intentos: </span>
+					<span id="intentos"></span>
+				</div>
+
+			</div>
+			
+			<div class="row" id="contenedorJuego">
+				<div class="col-md-5"><!-- FotoPerfil-->
+					<center>
+						<div class="FotoPerfil">
+							<img class="Foto" id="imagenPersona" src="" alt="">
+						</div>
+						
+						<div class="well well-lg droptarget" ondrop="drop(event)" ondragover="allowDrop(event)"> 
+							
+							<p ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="Instruccion">Arrastra el nombre de la coder</p>
+							
+						</div>
+					</center>
+				</div>
+				<div class="col-md-7">
+					<div id="NamesArea" class="well well-lg" style="column-count: 9;">
+						<!--ACÁ LLEGAN LOS NOMBRES CREADOS-->	
+					</div>
+				</div>
+		</div> <!--CIERRA CONTAINER-->
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+   		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>

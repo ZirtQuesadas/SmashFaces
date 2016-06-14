@@ -1,0 +1,36 @@
+*{
+	margin-top: 10px; 
+	margin-bottom: 10px;
+}
+body{
+	background-color: #fff;
+}
+.well {
+	background-color: #aaa !important;
+}
+#NamesArea{
+	min-height: 250px;
+	padding-top: 60px;
+	vertical-align: center;
+}
+p{
+	background-color: #FD7D3E;
+	padding: 3px;
+	border-radius: 3px;
+}
+#Instruccion{
+	min-height: 120px;
+	vertical-align: center;
+}
+.Foto{
+	width: 60%;
+	height: auto;
+	border-radius: 100%;
+	background-color: #fff;
+	padding: 0px;
+	margin: 0px;
+}
+
+select {
+	width: 100%;
+}
